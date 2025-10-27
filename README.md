@@ -1,22 +1,19 @@
 # slide and catch game
 
 A very simple 2D arcade-like game that demonstrates my knowledge of the pygame and simpleGE modules. 
-
-# Overview
-
+```
+Overview
 The premise is as follows: You are Dave, the sentient dart board. Steve appears near the bottom of the gameplay screen with a background image of a dimly lit hallway to emphasize the “house party game” environment. The player can move Dave left and right with the corresponding arrow keys on their keyboard. A number of darts fall from the top of the screen. Each dart will fall from a different and random x position and speed. If Dave catches a dart, a positive “ding” sound effect will play, and the player will get a point added to their score. If a dart leaves the bottom of the screen, it is reset to a new random position and speed. The game continues for 15 seconds for playtesting purposes but may be extended in the future.
 When the game begins, you will see an introduction screen with instructions and two buttons. Clicking the play  button will start the game. The quit button will exit the game. 
 Once a player has played a round of darts, they are taken back to the intro screen, and the latest score is passed in as a parameter. The player’s latest score is then displayed in the center of the screen in order to encourage the player to try again. 
  
-### State Transition Diagram
-
+State Transition Diagram
 *refer to State Transition.pdf*
 This is a standard two-state system. It is all that is necessary for such a simple concept. Each state will be represented by a subclass of the simpleGE Scene class. The player is initially shown the Intro scene. Instructions and two buttons will be displayed. The buttons both close the scene, but before doing so, they set a response variable indicating the player’s preference. If the player chooses to play the game, they are sent to the game play scene. If they should choose to quit, the game ends. 
 
 Game play scene always ends when the time expires and always sends the player back to the intro scene. However, it does pass back its score to the main function, which uses the score to provide feedback to the player in the intro scene. 
  
-### The Instructions Scene
-
+The Instructions Scene
 Controls access to the game.
 *refer to Intro GDD.pdf*
 This scene has four main visual elements:
@@ -54,9 +51,7 @@ process():
 	if play button is pressed:
 		response gets “play”
 		stop the scene
-
-### The Game Class
-
+The Game Class
 Primary class of the game. Subclassed from simpleGE.Scene
 *refer to GDD.pdf*
 Game class will have a number of visual attributes:
@@ -93,11 +88,9 @@ process:
 	if time left is less than zero:
 		print the score to console
 		stop the game
- 
-### Components of the Game class
-
+Components of the Game class
 Each of the visual elements of the Game class is an extension of a simpleGE element.
-**Dave**
+Dave
 	Dave is a subclass of simpleGE.Sprite
 	The image is a fair use dart board
 	Size should be 50x50
@@ -116,7 +109,7 @@ Each of the visual elements of the Game class is an extension of a simpleGE elem
 			subtract moveSpeed from x
 		if right key is pressed
 			add moveSpeed to x
-**Dart**
+Dart
 	Dart is a subclass of simpleGE.Sprite
 	Image should is a fair use dart
 	Transparent background preferably
@@ -152,9 +145,7 @@ lblTime
 	init():
 		set text to “Time Left: 15”
 		set center to (500, 30)
-
-### The main() function
-
+The main() function
 The main() function will manage the state transition between intro and play states.
 Standard main loop, containing four variables:
 •	instructions – an instance of the Instructions class
@@ -175,9 +166,7 @@ main():
 			when game is over, copy game.score to score
 		else:
 			set keepGoing to False (exiting game)
- 
-### Milestone Plan
-
+Milestone Plan
 Strategy is to create gameplay first, then instructions screen, and finally integrate state management. Game process will be stored on GitHub, with a marked commit for each milestone reached and multiple other commits as needed. Each milestone commit will run correctly with the milestone demonstrated. Each milestone is expected to take one programming session to complete. 
 1.	Game scene with background image 
 2.	Add basic Dave sprite
@@ -187,11 +176,9 @@ Strategy is to create gameplay first, then instructions screen, and finally inte
 6.	Modify for multiple (ten) darts including collision behavior
 7.	Add scorekeeping, time, and appropriate labels
 8.	Add instructions class and state transition
-
-#### Asset Plan
-
+Asset Plan
 hallway.jpg: Creative commons from https://opengameart.org/content/hallway-daynight-background-for-visual-novels 
 target.png: Creative commons from https://opengameart.org/content/xbullet 
 Dart.png: Creative commons from https://opengameart.org/content/arrow-1 
 ding_2.wav: Creative commons from https://opengameart.org/content/dings 
-
+```
