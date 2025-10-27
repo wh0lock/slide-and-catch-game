@@ -4,6 +4,24 @@ import pygame, simpleGE, random
     slide and catch demo
     Emily Adams
 """
+class dart(simpleGE.Sprite):
+    def __init__(self, scene):
+        super().__init__(scene)
+        self.setImage("Dart.png")
+        self.setSize(20, 75)
+        self.minSpeed = 3
+        self.maxSpeed = 8
+        self.reset()
+
+    def reset(self):
+        self.y = 10
+        self.x = random.randint(0, self.screenWidth)
+        self.dy = random.randint(self.minSpeed, self.maxSpeed)
+
+    def checkBounds(self):
+        if self.bottom > self.screenHeight:
+            self.reset()
+
 class Dave(simpleGE.Sprite):
     def __init__(self, scene):
         super().__init__(scene)
@@ -23,8 +41,9 @@ class Game(simpleGE.Scene):
         super().__init__()
         self.setImage("hallway.png")
         self.dave = Dave(self)
-        
-        self.sprites = [self.dave]
+        self.dart = dart(self)
+        self.sprites = [self.dave,
+                        self.dart]
 
 def main():
     game = Game()
