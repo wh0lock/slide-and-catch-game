@@ -4,12 +4,20 @@ import pygame, simpleGE, random
     slide and catch demo
     Emily Adams
 """
+class Dave(simpleGE.Sprite):
+    def __init__(self, scene):
+        super().__init__(scene)
+        self.setImage("target.png")
+        self.setSize(50, 50)
+        self.position = (320, 400)
 
 class Game(simpleGE.Scene):
     def __init__(self):
         super().__init__()
         self.setImage("hallway.png")
-        self.sprites = []
+        self.dave = Dave(self)
+        
+        self.sprites = [self.dave]
 
 def main():
     game = Game()
