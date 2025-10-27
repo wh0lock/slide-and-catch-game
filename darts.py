@@ -41,16 +41,21 @@ class Game(simpleGE.Scene):
         super().__init__()
         self.setImage("hallway.png")
         self.dartSound = simpleGE.Sound("ding_2.wav")
+        self.numDarts = 10
+
         self.dave = Dave(self)
-        self.dart = dart(self)
+        
+        self.darts = []
+        for i in range(self.numDarts):
+            self.darts.append(dart(self))
         self.sprites = [self.dave,
-                        self.dart]
+                        self.darts]
         
     def process(self):
-        if self.dart.collidesWith(self.dave):
-            self.dart.reset()
-            self.dartSound.play()
-
+        for dart in self.darts:
+            if dart.collidesWith(self.dave):
+                dart.reset()
+                self.dartSound.play()
 
 def main():
     game = Game()
