@@ -2,8 +2,6 @@
 
 A very simple 2D arcade-like game that demonstrates my knowledge of the pygame and simpleGE modules. 
 
-```
-
 # Overview
 
 The premise is as follows: You are Dave, the sentient dart board. Steve appears near the bottom of the gameplay screen with a background image of a dimly lit hallway to emphasize the “house party game” environment. The player can move Dave left and right with the corresponding arrow keys on their keyboard. A number of darts fall from the top of the screen. Each dart will fall from a different and random x position and speed. If Dave catches a dart, a positive “ding” sound effect will play, and the player will get a point added to their score. If a dart leaves the bottom of the screen, it is reset to a new random position and speed. The game continues for 15 seconds for playtesting purposes but may be extended in the future.
@@ -196,4 +194,4 @@ hallway.jpg: Creative commons from https://opengameart.org/content/hallway-dayni
 target.png: Creative commons from https://opengameart.org/content/xbullet 
 Dart.png: Creative commons from https://opengameart.org/content/arrow-1 
 ding_2.wav: Creative commons from https://opengameart.org/content/dings 
-```
+
