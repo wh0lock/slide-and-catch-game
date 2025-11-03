@@ -36,26 +36,65 @@ class Dave(simpleGE.Sprite):
         if self.isKeyPressed(pygame.K_RIGHT):
             self.x += self.moveSpeed
 
+class LblScore(simpleGE.Label):
+    def __init__(self):
+        super().__init__()
+        self.text = "Score: 0"
+        self.center = (75, 30)
+        self.clearBack = True 
+        self.fgColor = "white"
+        
+        pygame.font.init()
+        myFont = pygame.font.Font("Jersey10-Regular.ttf", 25) 
+        self.font = myFont
+        
+class LblTime(simpleGE.Label):
+    def __init__(self):
+        super().__init__()
+        self.text = "Time Left: 15"
+        self.center = (550, 30)
+        self.clearBack = True
+        self.fgColor = "white"
+
+        pygame.font.init()
+        myFont = pygame.font.Font("Jersey10-Regular.ttf", 25)
+        self.font = myFont
+
 class Game(simpleGE.Scene):
     def __init__(self):
         super().__init__()
         self.setImage("hallway.png")
+
         self.dartSound = simpleGE.Sound("ding_2.wav")
         self.numDarts = 10
+        
+        self.score = 0
+        self.lblScore = LblScore()
+
+        self.timer = simpleGE.Timer()
+        self.timer.totalTime = 15 
+        self.lblTime = LblTime()
 
         self.dave = Dave(self)
-        
         self.darts = []
         for i in range(self.numDarts):
             self.darts.append(dart(self))
         self.sprites = [self.dave,
-                        self.darts]
+                        self.darts,
+                        self.lblScore,
+                        self.lblTime]
         
     def process(self):
         for dart in self.darts:
             if dart.collidesWith(self.dave):
                 dart.reset()
                 self.dartSound.play()
+                self.score += 1
+                self.lblScore.text = f"Score: {self.score}"
+        self.lblTime.text = f"Time Left: {self.timer.getTimeLeft():.2f}"
+        if self.timer.getTimeLeft() < 0:
+            print(f"Score: {self.score}")
+            self.stop()
 
 def main():
     game = Game()

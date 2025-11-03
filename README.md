@@ -168,17 +168,18 @@ main():
 			set keepGoing to False (exiting game)
 Milestone Plan
 Strategy is to create gameplay first, then instructions screen, and finally integrate state management. Game process will be stored on GitHub, with a marked commit for each milestone reached and multiple other commits as needed. Each milestone commit will run correctly with the milestone demonstrated. Each milestone is expected to take one programming session to complete. 
-1.	Game scene with background image 
-2.	Add basic Dave sprite
-3.	Add keyboard motion to Dave
-4.	Add single dart with reset, falling and boundary behaviors
-5.	Add collision effect between dave and dart, sound effect
-6.	Modify for multiple (ten) darts including collision behavior
-7.	Add scorekeeping, time, and appropriate labels
+1.	Game scene with background image  [Complete]
+2.	Add basic Dave sprite [Complete]
+3.	Add keyboard motion to Dave [Complete]
+4.	Add single dart with reset, falling and boundary behaviors [Complete]
+5.	Add collision effect between dave and dart, sound effect [Complete]
+6.	Modify for multiple (ten) darts including collision behavior [Complete]
+7.	Add scorekeeping, time, and appropriate labels [Complete]
 8.	Add instructions class and state transition
 Asset Plan
 hallway.jpg: Creative commons from https://opengameart.org/content/hallway-daynight-background-for-visual-novels 
 target.png: Creative commons from https://opengameart.org/content/xbullet 
 Dart.png: Creative commons from https://opengameart.org/content/arrow-1 
 ding_2.wav: Creative commons from https://opengameart.org/content/dings 
+Jersey10-Regular.ttf: Creative commons from Google Fonts
 ```
