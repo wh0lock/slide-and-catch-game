@@ -51,7 +51,7 @@ class LblScore(simpleGE.Label):
 class LblTime(simpleGE.Label):
     def __init__(self):
         super().__init__()
-        self.text = "Time Left: 15"
+        self.text = "Time Left: 30"
         self.center = (550, 30)
         self.clearBack = True
         self.fgColor = "white"
@@ -72,10 +72,11 @@ class Game(simpleGE.Scene):
         self.lblScore = LblScore()
 
         self.timer = simpleGE.Timer()
-        self.timer.totalTime = 15 
+        self.timer.totalTime = 30 
         self.lblTime = LblTime()
 
         self.dave = Dave(self)
+
         self.darts = []
         for i in range(self.numDarts):
             self.darts.append(dart(self))
@@ -96,9 +97,80 @@ class Game(simpleGE.Scene):
             print(f"Score: {self.score}")
             self.stop()
 
+class Introduction(simpleGE.Scene):
+    def __init__(self, previousScore):
+        super().__init__()
+
+        self.previousScore = previousScore
+
+        self.setImage("hallway.png")
+        self.response = "QUIT"
+
+        self.instructions = simpleGE.MultiLabel()
+        self.instructions.textLines = [
+        "You are a sentient dart board.",
+        "Darts are falling from the sky.",
+        "You must catch them with",
+        "the left and right arrow keys",
+        "in order to win back your honor and",
+        "become the Lord of Dart Boards",
+        "before time runs out."]
+
+        myFont = pygame.font.Font("Jersey10-Regular.ttf", 25)
+
+        self.instructions.center = (320, 200)
+        self.instructions.size = (500, 290)
+        self.instructions.font = myFont
+        self.instructions.bgColor = "cornflowerblue"
+
+        self.playButton = simpleGE.Button()
+        self.playButton.text = "PLAY"
+        self.playButton.center = (100, 410)
+        self.playButton.font = myFont
+        self.playButton.bgColor = "cornflowerblue"
+
+        self.quitButton = simpleGE.Button()
+        self.quitButton.text = "QUIT"
+        self.quitButton.center = (540, 410)
+        self.quitButton.font = myFont
+        self.quitButton.bgColor = "cornflowerblue"
+
+        self.lblScore = simpleGE.Label()
+        self.lblScore.text = "LAST SCORE: 0"
+        self.lblScore.center = (320, 410)
+        self.lblScore.font = myFont
+        self.lblScore.bgColor = "cornflowerblue"
+        self.lblScore.fgColor = "black" 
+
+        self.lblScore.text = f"LAST SCORE: {self.previousScore}"
+
+        self.sprites = [self.instructions,
+                        self.playButton,
+                        self.quitButton,
+                        self.lblScore]
+        
+    def process(self):
+        if self.playButton.clicked:
+            self.response = "PLAY"
+            self.stop()
+        if self.quitButton.clicked:
+            self.response = "QUIT"
+            self.stop()
+
 def main():
-    game = Game()
-    game.start()
+    keepGoing = True
+    lastScore = 0 
+
+    while keepGoing:
+        introduction = Introduction(lastScore)
+        introduction.start()
+
+        if introduction.response == "PLAY":
+            game = Game()
+            game.start()
+            lastScore = game.score
+        else:
+            keepGoing = False
 
 if __name__ == "__main__":
     main()

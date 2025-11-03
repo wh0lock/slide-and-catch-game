@@ -175,7 +175,7 @@ Strategy is to create gameplay first, then instructions screen, and finally inte
 5.	Add collision effect between dave and dart, sound effect [Complete]
 6.	Modify for multiple (ten) darts including collision behavior [Complete]
 7.	Add scorekeeping, time, and appropriate labels [Complete]
-8.	Add instructions class and state transition
+8.	Add instructions class and state transition [Complete]
 Asset Plan
 hallway.jpg: Creative commons from https://opengameart.org/content/hallway-daynight-background-for-visual-novels 
 target.png: Creative commons from https://opengameart.org/content/xbullet 
